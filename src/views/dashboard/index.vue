@@ -94,8 +94,8 @@ export default {
     .class-centre-title {
       font-size: 25px;
       line-height: 46px;
-      color: #283443;
-      border-bottom: solid 2px #283443;
+      color: #409eff;
+      border-bottom: solid 2px #409eff;
       margin: 30px;
     }
     div {

@@ -41,3 +41,14 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+// 传输数据
+import axios from 'axios'
+// 将axios挂载到原型上
+Vue.prototype.$axios = axios
+
+// 配置全局的axios默认值（可选）
+
+axios.defaults.baseURL = 'https://api.example.com'
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'

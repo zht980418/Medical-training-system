@@ -90,7 +90,7 @@
         :loading="loading"
         type="primary"
         style="width:100%;margin-bottom:30px;margin-left:0px;"
-        @click.native.prevent="handleLogin"
+        @click.native.prevent="handleRegister"
       >注册</el-button>
     </el-form>
   </div>
@@ -98,6 +98,8 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+// import { register } from '@/api/user'
+import Axios from 'axios'
 
 export default {
   name: 'Login',
@@ -172,6 +174,19 @@ export default {
           return false
         }
       })
+    },
+    handleRegister() { // TODO:注册
+      Axios.get('http://localhost:8080/MedicalServer/Server',
+        {
+          param:
+            { id: 5 }
+        }
+      ).then(res => {
+        console.log('数据是:', res)
+      })
+        .catch((e) => {
+          console.log('获取数据失败', e)
+        })
     }
   }
 }
