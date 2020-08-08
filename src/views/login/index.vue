@@ -98,8 +98,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-// import { register } from '@/api/user'
-import Axios from 'axios'
+import { register } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -176,17 +175,17 @@ export default {
       })
     },
     handleRegister() { // TODO:注册
-      Axios.get('http://localhost:8080/MedicalServer/Server',
-        {
-          param:
-            { id: 5 }
-        }
-      ).then(res => {
-        console.log('数据是:', res)
+      register().then(res => {
+        console.log(res)
+      }).catch((e) => {
+        console.log(e)
       })
-        .catch((e) => {
-          console.log('获取数据失败', e)
-        })
+      // this.$axios.get('/MedicalServer/Server', this.$qs.stringify('')).then(res => {
+      //   console.log('数据是:', res)
+      // })
+      //   .catch((e) => {
+      //     console.log('获取数据失败', e)
+      //   })
     }
   }
 }

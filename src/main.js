@@ -43,12 +43,12 @@ new Vue({
 })
 
 // 传输数据
-import axios from 'axios'
+import Axios from 'axios'
+import Qs from 'qs'
 // 将axios挂载到原型上
-Vue.prototype.$axios = axios
-
+Vue.prototype.$axios = Axios
+Vue.prototype.$qs = Qs
 // 配置全局的axios默认值（可选）
-
-axios.defaults.baseURL = 'https://api.example.com'
+Axios.defaults.baseURL = 'http://localhost:8080'
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'

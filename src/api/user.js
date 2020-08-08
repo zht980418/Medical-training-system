@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request2 from '@/utils/request2'
 
 export function login(data) {
   return request({
@@ -20,5 +21,12 @@ export function logout() {
   return request({
     url: '/vue-admin-template/user/logout',
     method: 'post'
+  })
+}
+
+export function register() {
+  return request2({
+    url: '/MedicalServer/Server',
+    method: 'get'
   })
 }
