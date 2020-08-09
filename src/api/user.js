@@ -27,6 +27,6 @@ export function logout() {
 export function register() {
   return request2({
     url: '/MedicalServer/Server',
-    method: 'get'
+    method: 'post'
   })
 }
