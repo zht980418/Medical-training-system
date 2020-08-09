@@ -46,116 +46,71 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/courseCentre',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: '课程培训', icon: 'dashboard' }
+      path: 'courseCentre',
+      name: 'CourseCentre',
+      component: () => import('@/views/courseCentre/index'),
+      meta: { title: '课程培训', icon: 'el-icon-s-management' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: '考试中心', icon: 'el-icon-s-help' },
+    redirect: '/',
     children: [
       {
-        path: 'table',
+        path: 'examCentre',
+        name: 'ExamCentre',
+        component: () => import('@/views/examCentre/index'),
+        meta: { title: '考试中心', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/answering',
+    component: Layout,
+    meta: { title: '答疑中心', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: '/platform',
         name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        component: () => import('@/views/answering/platform/index'),
+        meta: { title: '答疑平台', icon: 'el-icon-chat-line-square' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '答疑平台', icon: 'tree' }
+        path: '/quiz',
+        name: 'Quiz',
+        component: () => import('@/views/answering//quiz/index'),
+        meta: { title: '提问', icon: 'el-icon-tickets' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/',
     component: Layout,
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '答疑平台', icon: 'form' }
+        path: '/message',
+        name: 'Message',
+        component: () => import('@/views/message/index'),
+        meta: { title: '通知中心', icon: 'nested' }
       }
     ]
   },
 
   {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: '通知中心',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
+    path: 'info',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: '个人中心', icon: 'link' }
+        path: '/info',
+        name: 'Info',
+        component: () => import('@/views/info/index'),
+        meta: { title: '个人中心', icon: 'el-icon-user' }
       }
     ]
   },
