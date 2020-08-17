@@ -47,21 +47,22 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/courseCentre',
-    children: [{
-      path: 'courseCentre',
-      name: 'CourseCentre',
-      component: () => import('@/views/courseCentre/index'),
-      meta: { title: '课程培训', icon: 'el-icon-s-management' }
-    }]
+    children: [
+      {
+        path: 'index',
+        name: 'CourseCentre',
+        component: () => import('@/views/courseCentre/index'),
+        meta: { title: '课程培训', icon: 'el-icon-s-management' }
+      }]
   },
 
   {
-    path: '/',
+    path: '/examCentre',
     component: Layout,
     redirect: '/',
     children: [
       {
-        path: 'examCentre',
+        path: 'index',
         name: 'ExamCentre',
         component: () => import('@/views/examCentre/index'),
         meta: { title: '考试中心', icon: 'form' }
@@ -75,13 +76,13 @@ export const constantRoutes = [
     meta: { title: '答疑中心', icon: 'el-icon-s-help' },
     children: [
       {
-        path: '/platform',
-        name: 'Table',
+        path: 'platform',
+        name: 'Platform',
         component: () => import('@/views/answering/platform/index'),
         meta: { title: '答疑平台', icon: 'el-icon-chat-line-square' }
       },
       {
-        path: '/quiz',
+        path: 'quiz',
         name: 'Quiz',
         component: () => import('@/views/answering//quiz/index'),
         meta: { title: '提问', icon: 'el-icon-tickets' }
@@ -90,27 +91,72 @@ export const constantRoutes = [
   },
 
   {
-    path: '/',
+    path: '/message',
     component: Layout,
     children: [
       {
-        path: '/message',
+        path: 'index',
         name: 'Message',
         component: () => import('@/views/message/index'),
-        meta: { title: '通知中心', icon: 'nested' }
+        meta: { title: '通知中心', icon: 'el-icon-message-solid' }
       }
     ]
   },
-
   {
-    path: 'info',
+    path: '/info',
     component: Layout,
     children: [
       {
-        path: '/info',
+        path: 'index',
         name: 'Info',
         component: () => import('@/views/info/index'),
         meta: { title: '个人中心', icon: 'el-icon-user' }
+      }
+    ]
+  }, {
+    path: '/messageManager',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'MessageManager',
+        component: () => import('@/views/message/index'),
+        meta: { title: '通知管理', icon: 'el-icon-bell' }
+      }
+    ]
+  },
+  {
+    path: '/courseManager',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'CourseManager',
+        component: () => import('@/views/courseManager/index'),
+        meta: { title: '课程管理', icon: 'el-icon-collection' }
+      }
+    ]
+  },
+  {
+    path: '/examManager',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'ExamManager',
+        component: () => import('@/views/examManager/index'),
+        meta: { title: '考试管理', icon: 'el-icon-document' }
+      }
+    ]
+  }, {
+    path: '/userManager',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'UserManager',
+        component: () => import('@/views/userManager/index'),
+        meta: { title: '用户管理', icon: 'el-icon-s-custom' }
       }
     ]
   },

@@ -24,9 +24,10 @@ export function logout() {
   })
 }
 
-export function register() {
+export function register(data) {
   return request2({
-    url: '/MedicalServer/Server',
-    method: 'post'
+    url: '/MedicalServer/server_servlet',
+    method: 'post',
+    data
   })
 }

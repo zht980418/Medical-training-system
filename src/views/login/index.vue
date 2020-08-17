@@ -175,13 +175,13 @@ export default {
       })
     },
     handleRegister() { // TODO:注册
-      register().then(res => {
+      register('123').then(res => {
         console.log(res)
         alert('注册成功！')
       }).catch((e) => {
         console.log(e)
       })
-      // this.$axios.post('/MedicalServer/Server', this.$qs.stringify('')).then(res => {
+      // this.$axios.post('/MyServer/server_servlet', this.$qs.stringify('1234')).then(res => {
       //   alert('注册成功！')
       //   console.log('数据是:', res)
       // })
