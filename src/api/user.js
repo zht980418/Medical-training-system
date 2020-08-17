@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import request2 from '@/utils/request2'
+import Qs from 'qs'
 
 export function login(data) {
   return request({
@@ -26,8 +27,9 @@ export function logout() {
 
 export function register(data) {
   return request2({
-    url: '/MedicalServer/server_servlet',
+    url: '/MedicalServer/myServer',
     method: 'post',
-    data
+    param: Qs.stringify(data),
+    data: Qs.stringify(data)
   })
 }

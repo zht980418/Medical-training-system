@@ -175,7 +175,10 @@ export default {
       })
     },
     handleRegister() { // TODO:注册
-      register('123').then(res => {
+      const data = {
+        'name': '张三'
+      }
+      register(data).then(res => {
         console.log(res)
         alert('注册成功！')
       }).catch((e) => {
