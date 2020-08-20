@@ -30,6 +30,7 @@
           completed="5"
           start-time="2020/7/20"
           end-time="2020/10/12"
+          @click.native.prevent="handleCourse"
         />
         <CourseItem
           :icon="img1"
@@ -60,10 +61,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CourseItem from '@/layout/components/CourseCentre/Item'
+import CourseItem from '../courseCentre/components/Item'
 
 export default {
-  name: 'Dashboard',
+  name: 'CourseCentre',
   components: { CourseItem },
   data() {
     return {
@@ -83,6 +84,12 @@ export default {
     ...mapGetters([
       'name'
     ])
+  },
+  methods: {
+    handleCourse() {
+      console.log('点击课程')
+      this.$router.push({ name: 'CoursePage' })
+    }
   }
 }
 </script>

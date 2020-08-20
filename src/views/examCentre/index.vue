@@ -22,26 +22,26 @@
     </el-tabs>
     <div>
       <ul class="course-list">
-        <CourseItem
+        <ExamItem
           :icon="img1"
           :title="aaa"
           :office="Office"
           start-time="2020/7/20"
           end-time="2020/10/12"
         />
-        <CourseItem
+        <ExamItem
           :icon="img1"
           title="hhhhh"
           office="另一个XXXXXXXXX"
           start-time="2020/4/6"
           end-time="2020/11/11"
         />
-        <CourseItem
+        <ExamItem
           :icon="img1"
           title="eiruewirow"
           office="yige"
         />
-        <CourseItem
+        <ExamItem
           :icon="img1"
           title="title4"
           office="office4"
@@ -53,11 +53,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CourseItem from '@/layout/components/ExamCentre/Item'
+import ExamItem from '../examCentre/components/Item'
 
 export default {
-  name: 'Dashboard',
-  components: { CourseItem },
+  name: 'ExamCentre',
+  components: { ExamItem },
   data() {
     return {
       tabMapOptions: [
@@ -69,7 +69,6 @@ export default {
       img1: require('@/icons/img/test2.jpg'),
       aaa: '第一场考试',
       Office: '某XXXX科室'
-
     }
   },
   computed: {

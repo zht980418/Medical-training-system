@@ -98,7 +98,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { register } from '@/api/user'
+// import { register } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -174,23 +174,8 @@ export default {
         }
       })
     },
-    handleRegister() { // TODO:注册
-      const data = {
-        'name': '张三'
-      }
-      register(data).then(res => {
-        console.log(res)
-        alert('注册成功！')
-      }).catch((e) => {
-        console.log(e)
-      })
-      // this.$axios.post('/MyServer/server_servlet', this.$qs.stringify('1234')).then(res => {
-      //   alert('注册成功！')
-      //   console.log('数据是:', res)
-      // })
-      //   .catch((e) => {
-      //     console.log('获取数据失败', e)
-      //   })
+    handleRegister() {
+      // TODO:注册
     }
   }
 }
