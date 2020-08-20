@@ -46,14 +46,15 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/courseCentre',
+    redirect: '/coursePage',
     children: [
       {
         path: 'courseCentre',
         name: 'CourseCentre',
         component: () => import('@/views/courseCentre/courseList'),
         meta: { title: '课程培训', icon: 'el-icon-s-management' }
-      }]
+      }
+    ]
   },
 
   {

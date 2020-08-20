@@ -88,7 +88,7 @@ export default {
   methods: {
     handleCourse() {
       console.log('点击课程')
-      this.$router.push({ name: 'CoursePage' })
+      // this.$router.push({ name: 'CoursePage' })
     }
   }
 }
