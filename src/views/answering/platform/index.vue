@@ -1,42 +1,39 @@
 <template>
-  <div class="app-container">
+  <div style="padding:30px;">
     <el-table
-      v-loading="listLoading"
+      style="width: 100%;padding-top: 15px;"
       :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
     >
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column
+        label="标题"
+        min-width="200"
+        prop="title"
+      >
         <template slot-scope="scope">
           {{ scope.row.title }}
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column
+        label="发布者"
+        width="195"
+        align="center"
+        prop="author"
+      >
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          {{ scope.row.author }}
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+      <el-table-column
+        label="时间"
+        width="100"
+        align="center"
+        prop="time"
+      >
+        <!-- 作用在于设置显示格式 -->
+        <template slot-scope="{row}">
+          <el-tag :type="row.time ">
+            {{ row.time }}
+          </el-tag>
         </template>
       </el-table-column>
     </el-table>
@@ -44,35 +41,11 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
-      list: null,
-      listLoading: true
-    }
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      list: [{ title: '12313', author: 'wewqewq', time: '2332r' }, { title: '123dwrewr3', author: 'weerqqewqedfvfhdewq', time: '213432332r' }]
     }
   }
 }

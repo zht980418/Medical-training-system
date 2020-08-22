@@ -46,13 +46,20 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/coursePage',
+    redirect: '/courseList',
     children: [
       {
-        path: 'courseCentre',
-        name: 'CourseCentre',
+        path: 'courseList',
+        name: 'CourseList',
         component: () => import('@/views/courseCentre/courseList'),
         meta: { title: '课程培训', icon: 'el-icon-s-management' }
+      },
+      {
+        path: 'coursePage',
+        name: 'CoursePage',
+        component: () => import('@/views/courseCentre/coursePage'),
+        meta: { title: '课程培训', noCache: true },
+        hidden: true
       }
     ]
   },
@@ -60,13 +67,19 @@ export const constantRoutes = [
   {
     path: '/examCentre',
     component: Layout,
-    redirect: '/',
     children: [
       {
-        path: 'index',
-        name: 'ExamCentre',
-        component: () => import('@/views/examCentre/index'),
+        path: 'examList',
+        name: 'ExamList',
+        component: () => import('@/views/examCentre/examList'),
         meta: { title: '考试中心', icon: 'form' }
+      },
+      {
+        path: 'examPage',
+        name: 'ExamPage',
+        component: () => import('@/views/examCentre/examPage'),
+        meta: { title: '考试中心', noCache: true },
+        hidden: true
       }
     ]
   },

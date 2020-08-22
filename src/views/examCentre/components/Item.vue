@@ -1,19 +1,13 @@
 <!--  -->
 <template>
-  <li class="course-item">
+  <li class="exam-item">
     <img
-      class="course-img"
+      class="exam-img"
       :src="Icon"
     >
     <div class="item-description">
       <p class="item-title">{{ Title }}</p>
       <p class="item-office">{{ Office }}</p>
-      <!-- <span class="item-progress-text">已学习{{ Completed }}/{{ Sum }}</span> -->
-      <!-- <el-progress
-        class="item-progress"
-        :percentage="Percentage"
-        show-text="false"
-      /> -->
       <p class="item-time">{{ StartTime }}-{{ EndTime }}</p>
     </div>
   </li>
@@ -22,12 +16,12 @@
 <script>
 
 export default {
-  name: 'CourseItem',
+  name: 'ExamItem',
   functional: false,
   props: {
     icon: {
       type: String,
-      default: 'img1'
+      default: require('@/icons/img/test2.jpg')
     },
     title: {
       type: String,
@@ -35,15 +29,7 @@ export default {
     },
     office: {
       type: String,
-      default: ''
-    },
-    sum: {
-      type: Number,
-      default: 0
-    },
-    completed: {
-      type: Number,
-      default: 0
+      default: '科室'
     },
     startTime: {
       type: String,
@@ -59,9 +45,6 @@ export default {
       Title: '',
       Icon: '',
       Office: '',
-      Sum: 0,
-      Completed: 0,
-      Percentage: 0,
       StartTime: '',
       EndTime: ''
     }
@@ -72,40 +55,17 @@ export default {
     this.Office = this.office
     this.StartTime = this.startTime
     this.EndTime = this.endTime
-    this.Sum = this.sum
-    this.Completed = this.completed
-    // 当完成数量为0时，显示默认值0，否则进行百分比计算
-    if (this.Completed !== 0) { this.Percentage = 100 * this.Completed / this.Sum }
   }
-
-  // render(h, context) {
-  //   const { icon, title } = context.props
-  //   const vnodes = []
-
-  //   if (icon) {
-  //     if (icon.includes('el-icon')) {
-  //       vnodes.push(<i class={[icon, 'sub-el-icon']} />)
-  //     } else {
-  //       vnodes.push(<svg-icon icon-class={icon} />)
-  //     }
-  //   }
-
-  //   if (title) {
-  //     vnodes.push(<span slot='title'>{(title)}</span>)
-  //   }
-
-  //   return vnodes
-  // }
 }
 </script>
 
 <style lang='scss' scoped>
-.course-item {
+.exam-item {
   border: solid 1px lavender;
   background: ghostwhite;
   margin-right: 20px;
   margin-bottom: 30px;
-  .course-img {
+  .exam-img {
     width: 200px;
     height: 100px;
     margin-left: 1px;
@@ -122,15 +82,6 @@ export default {
       font-size: 14px;
       font-weight: 600;
       color: rgb(117, 111, 111);
-    }
-    .item-progress-text {
-      font-size: 12px;
-      font-weight: 600;
-      color: #283443;
-    }
-    .item-progress {
-      margin-top: 5px;
-      margin-bottom: 5px;
     }
     .item-time {
       font-size: 12px;

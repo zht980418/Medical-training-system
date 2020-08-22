@@ -1,36 +1,40 @@
 <template>
   <div style="padding:30px;">
-    <el-table style="width: 100%;padding-top: 15px;">
+    <el-table
+      style="width: 100%;padding-top: 15px;"
+      :data="list"
+    >
       <el-table-column
-        label="Title"
+        label="标题"
         min-width="200"
         prop="title"
       >
-        <!-- <template slot-scope="scope">
-          {{ scope.row.title | titleNoFilter }}
-        </template> -->
+        <template slot-scope="scope">
+          {{ scope.row.title }}
+        </template>
       </el-table-column>
       <el-table-column
-        label="Author"
+        label="发布者"
         width="195"
         align="center"
         prop="author"
       >
-        <!-- <template slot-scope="scope">
-          {{ scope.row.author | authorFilter }}
-        </template> -->
+        <template slot-scope="scope">
+          {{ scope.row.author }}
+        </template>
       </el-table-column>
       <el-table-column
-        label="Time"
+        label="时间"
         width="100"
         align="center"
         prop="time"
       >
-        <!-- <template slot-scope="{row}">
-          <el-tag :type="row.time | timeFilter">
+        <!-- 作用在于设置显示格式 -->
+        <template slot-scope="{row}">
+          <el-tag :type="row.time ">
             {{ row.time }}
           </el-tag>
-        </template> -->
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -39,20 +43,9 @@
 <script>
 
 export default {
-  filters: {
-    titleFilter(title) {
-      return title
-    },
-    authorFilter(author) {
-      return author
-    },
-    timeFilter(time) {
-      return time
-    }
-  },
   data() {
     return {
-      list: [{ id: '0', title: '12313', author: 'wewqewq', time: '2332r' }]
+      list: [{ title: '12313', author: 'wewqewq', time: '2332r' }, { title: '123dwrewr3', author: 'weerqqewqedfvfhdewq', time: '213432332r' }]
     }
   }
 }

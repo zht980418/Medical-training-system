@@ -1,6 +1,6 @@
 <template>
   <div class="class-centre-container">
-    <h1 class="class-centre-title">课程中心</h1>
+    <h1 class="class-centre-title">考试中心</h1>
     <el-tabs
       v-model="activeName"
       style="margin-top:15px;margin-left:60px;margin-right:30px"
@@ -12,7 +12,7 @@
         :name="item.key"
       >
         <keep-alive>
-          <CourseTabPane
+          <ExamTabPane
             v-if="activeName==item.key"
             :type="item.key"
           />
@@ -24,11 +24,11 @@
 
 <script>
 // import { mapGetters } from 'vuex'
-import CourseTabPane from '../courseCentre/components/tabPane'
+import ExamTabPane from '../examCentre/components/tabPane'
 
 export default {
-  name: 'CourseCentre',
-  components: { CourseTabPane },
+  name: 'ExamCentre',
+  components: { ExamTabPane },
   data() {
     return {
       tabMapOptions: [

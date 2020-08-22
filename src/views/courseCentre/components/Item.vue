@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <li class="course-item">
     <img
@@ -20,14 +19,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'CourseItem',
   functional: false,
   props: {
     icon: {
       type: String,
-      default: 'img1'
+      default: require('@/icons/img/test1.png')
     },
     title: {
       type: String,
@@ -35,7 +33,7 @@ export default {
     },
     office: {
       type: String,
-      default: ''
+      default: '科室'
     },
     sum: {
       type: Number,
@@ -77,25 +75,6 @@ export default {
     // 当完成数量为0时，显示默认值0，否则进行百分比计算
     if (this.Completed !== 0) { this.Percentage = 100 * this.Completed / this.Sum }
   }
-
-  // render(h, context) {
-  //   const { icon, title } = context.props
-  //   const vnodes = []
-
-  //   if (icon) {
-  //     if (icon.includes('el-icon')) {
-  //       vnodes.push(<i class={[icon, 'sub-el-icon']} />)
-  //     } else {
-  //       vnodes.push(<svg-icon icon-class={icon} />)
-  //     }
-  //   }
-
-  //   if (title) {
-  //     vnodes.push(<span slot='title'>{(title)}</span>)
-  //   }
-
-  //   return vnodes
-  // }
 }
 </script>
 
