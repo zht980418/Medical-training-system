@@ -1,7 +1,9 @@
 <template>
-  <div class="app-container">
+  <div class="class-centre-container">
+    <h1 class="class-centre-title">{{ title }}</h1>
     <el-form
       ref="form"
+      class="class-centre-form"
       :model="form"
       label-width="120px"
     >
@@ -23,58 +25,7 @@
           />
         </el-select>
       </el-form-item>
-      <!-- <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker
-            v-model="form.date1"
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%;"
-          />
-        </el-col>
-        <el-col
-          :span="2"
-          class="line"
-        >-</el-col>
-        <el-col :span="11">
-          <el-time-picker
-            v-model="form.date2"
-            type="fixed-time"
-            placeholder="Pick a time"
-            style="width: 100%;"
-          />
-        </el-col>
-      </el-form-item> -->
-      <!-- <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery" />
-      </el-form-item> -->
-      <!-- <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox
-            label="Online activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Promotion activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Offline activities"
-            name="type"
-          />
-          <el-checkbox
-            label="Simple brand exposure"
-            name="type"
-          />
-        </el-checkbox-group>
-      </el-form-item> -->
-      <!-- <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item> -->
-      <el-form-item label="正文">
+      <el-form-item label="正 文">
         <el-input
           v-model="form.desc"
           type="textarea"
@@ -95,6 +46,7 @@
 export default {
   data() {
     return {
+      title: '提 问',
       form: {
         name: '',
         region: '',
@@ -121,9 +73,21 @@ export default {
 }
 </script>
 
-<style scoped>
-.line {
-  text-align: center;
+<style lang="scss" scoped>
+.class-centre {
+  &-container {
+    margin: 30px;
+    .class-centre-title {
+      font-size: 25px;
+      line-height: 46px;
+      color: #409eff;
+      border-bottom: solid 2px #409eff;
+      margin: 30px;
+    }
+    .class-centre-form {
+      margin-right: 90px;
+    }
+  }
 }
 </style>
 

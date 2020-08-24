@@ -90,10 +90,17 @@ export const constantRoutes = [
     meta: { title: '答疑中心', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'platform',
-        name: 'Platform',
-        component: () => import('@/views/answering/platform/index'),
+        path: 'questionList',
+        name: 'QuestionList',
+        component: () => import('@/views/answering/platform/questionList'),
         meta: { title: '答疑平台', icon: 'el-icon-chat-line-square' }
+      },
+      {
+        path: 'questionPage',
+        name: 'QuestionPage',
+        component: () => import('@/views/answering/platform/questionPage'),
+        meta: { title: '答疑平台', noCache: true },
+        hidden: true
       },
       {
         path: 'quiz',
@@ -109,10 +116,17 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
-        name: 'Message',
-        component: () => import('@/views/message/index'),
+        path: 'messageList',
+        name: 'MessageList',
+        component: () => import('@/views/message/messageList'),
         meta: { title: '通知中心', icon: 'el-icon-message-solid' }
+      },
+      {
+        path: 'messagePage',
+        name: 'MessagePage',
+        component: () => import('@/views/message/messagePage'),
+        meta: { title: '通知中心', noCache: true },
+        hidden: true
       }
     ]
   },
@@ -134,7 +148,7 @@ export const constantRoutes = [
       {
         path: 'index',
         name: 'MessageManager',
-        component: () => import('@/views/message/index'),
+        component: () => import('@/views/messageManager/index'),
         meta: { title: '通知管理', icon: 'el-icon-bell' }
       }
     ]

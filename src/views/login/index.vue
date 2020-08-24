@@ -85,20 +85,12 @@
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
       >登录</el-button>
-
-      <el-button
-        :loading="loading"
-        type="primary"
-        style="width:100%;margin-bottom:30px;margin-left:0px;"
-        @click.native.prevent="handleRegister"
-      >注册</el-button>
     </el-form>
   </div>
 </template>
 
 <script>
 import { validUsername } from '@/utils/validate'
-// import { register } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -173,9 +165,6 @@ export default {
           return false
         }
       })
-    },
-    handleRegister() {
-      // TODO:注册
     }
   }
 }

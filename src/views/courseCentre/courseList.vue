@@ -3,7 +3,7 @@
     <h1 class="class-centre-title">课程中心</h1>
     <el-tabs
       v-model="activeName"
-      style="margin-top:15px;margin-left:60px;margin-right:30px"
+      style="margin-top:15px;margin-left:60px;margin-right:60px"
     >
       <el-tab-pane
         v-for="item in tabMapOptions"

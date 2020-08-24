@@ -83,7 +83,7 @@ export default {
   border: solid 1px lavender;
   background: ghostwhite;
   margin-right: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   .course-img {
     width: 200px;
     height: 100px;
