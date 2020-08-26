@@ -3,7 +3,7 @@
   <div class="class-centre-container">
     <h1 class="class-centre-title">{{ title }}</h1>
     <el-card class="class-centre-card">
-      <p class="stems">{{ index }}. {{ description }}</p>
+      <p class="stems">{{ currentIndex+1 }}. {{ exam[currentIndex].description }}</p>
       <div class="img-container">
         <img
           class="image"
@@ -21,7 +21,7 @@
           prop="index"
         >
           <template slot-scope="scope">
-            步骤{{ scope.row.index +1 }}
+            步骤{{ scope.$index +1 }}
           </template>
         </el-table-column>
         <el-table-column
@@ -35,19 +35,21 @@
               type="primary"
               icon="el-icon-edit"
               circle
+              @click="handleRecord(scope.$index)"
             />
             <el-button
               v-show="buttonStatus[scope.row.status]"
               type="success"
               icon="el-icon-phone-outline"
               circle
-              @click="handleRecord(scope.row.index)"
+              @click="handleListen(scope.$index)"
             />
             <el-button
               v-show="buttonStatus[scope.row.status]"
               type="danger"
               icon="el-icon-delete"
               circle
+              @click="handleDelete(scope.$index)"
             />
           </template>
         </el-table-column>
@@ -74,8 +76,12 @@
           <el-button
             type="primary"
             icon="el-icon-arrow-left"
+            @click="handlePrior(currentIndex)"
           >上一题</el-button>
-          <el-button type="primary">下一题<i class="el-icon-arrow-right el-icon--right" /></el-button>
+          <el-button
+            type="primary"
+            @click="handleNext(currentIndex)"
+          >下一题<i class="el-icon-arrow-right el-icon--right" /></el-button>
         </el-button-group>
       </div>
     </el-card>
@@ -83,22 +89,106 @@
 </template>
 
 <script>
+import Recorder from 'js-audio-recorder'
 
 export default {
   name: 'ExamPage',
   data() {
     return {
       title: 'ExamPage',
-      index: '1',
-      buttonStatus: [false, true],
-      description: '题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干',
+      recorder: new Recorder(),
+      player: new window.Audio(),
+      currentIndex: 0, // 题号
+      buttonStatus: [false, true], // 部分按钮显示状态
+      rcdStat: 0, // 与aslist里面的rcdStat匹配确认停止的是否是同一个录音文件
       testpic1: require('@/icons/img/testpic1.jpg'),
-      answerList: [{ index: 0, answer: '2432', status: '1' }, { index: 1, answer: '56546', status: '0' }]
+      exam: [
+        {
+          index: 0,
+          description: '题干题干题干题干题干题干题干题干题干干题干题干题干题干题干题干题干'
+        },
+        {
+          index: 1,
+          description: '1111题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干'
+        }
+      ],
+      answerList: [{ answer: [], status: 1, rcdStat: 0 }, { answer: [], status: 0, rcdStat: 0 }]
     }
   },
   methods: {
+    // 添加——修改状态，list++，然后录音
+    // 修改--直接重新录音
     handleRecord(index) {
-      this.answerList[index].status = 1
+      Recorder.getPermission().then(() => {
+        console.log('给权限了')
+        // 未录音/停止正在录制的音频【正确状态】
+        console.log('index:' + index)
+        console.log('录制前' + this.answerList[index].rcdStat + '' + this.rcdStat)
+        if (this.rcdStat === this.answerList[index].rcdStat) {
+          // 未录音状态
+          if (this.rcdStat === 0) {
+            if (this.answerList[index].status === 0) {
+              // 修改状态
+              this.answerList[index].status = 1
+              // list添加
+              this.answerList.push({ answer: [], status: 0, rcdStat: 0 })
+            }
+            alert('关闭对话框后开始录制回答。回答结束后，再次点击蓝色按钮结束录制！')
+            // 修改录音状态标志
+            this.answerList[index].rcdStat = 1
+            this.rcdStat = 1
+            console.log('开始录制')
+            this.recorder.start()
+          } else if (this.rcdStat === 1) { // 停止正在录制的音频
+            // this.recorder.stop()
+            this.answerList[index].answer = this.recorder.getWAVBlob()
+            console.log(this.answerList[index].answer)
+            // 录音状态标志置0
+            this.answerList[index].rcdStat = 0
+            this.rcdStat = 0
+            console.log('录制结束')
+          }
+        } else {
+          alert('当前录制回答非此步骤，请点击原步骤停止录制！')
+        }
+      }, (error) => {
+        console.log(`${error.name} : ${error.message}`)
+      })
+    },
+    handleListen(index) {
+      console.log('试听音频')
+      this.player.src = window.URL.createObjectURL(this.answerList[index].answer)
+      this.player.play()
+    },
+    handleDelete(index) {
+      this.answerList.splice(index, 1)
+    },
+    // 上一题
+    handleNext(index) {
+      if (this.exam[index + 1]) {
+        this.handleSend(this.answerList)
+        this.currentIndex++
+      } else {
+        alert('已是最后一题！')
+      }
+    },
+    // 下一题
+    handlePrior(index) {
+      console.log(this.currentIndex)
+      if (index === 0) {
+        alert('已是第一题！')
+      } else {
+        this.handleSend(this.answerList)
+        this.currentIndex--
+      }
+    },
+    // TODO--获取试题数据
+    getExam() {
+
+    },
+    // TODO--发送数据保存
+    handleSend(answerList) {
+
     }
   }
 }
