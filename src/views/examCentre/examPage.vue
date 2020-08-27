@@ -3,7 +3,7 @@
   <div class="class-centre-container">
     <h1 class="class-centre-title">{{ title }}</h1>
     <el-card class="class-centre-card">
-      <p class="stems">{{ currentIndex+1 }}. {{ exam[currentIndex].description }}</p>
+      <p class="stems">{{ currentIndex+1 }}. {{ exam[currentIndex].question_items }}</p>
       <div class="img-container">
         <img
           class="image"
@@ -73,11 +73,11 @@
           /> 删除答案
         </div>
         <el-button-group>
-          <el-button
+          <!-- <el-button
             type="primary"
             icon="el-icon-arrow-left"
             @click="handlePrior(currentIndex)"
-          >上一题</el-button>
+          >上一题</el-button> -->
           <el-button
             type="primary"
             @click="handleNext(currentIndex)"
@@ -90,6 +90,7 @@
 
 <script>
 import Recorder from 'js-audio-recorder'
+import { getExam, saveAnswer } from '@/api/exam'
 
 export default {
   name: 'ExamPage',
@@ -102,18 +103,13 @@ export default {
       buttonStatus: [false, true], // 部分按钮显示状态
       rcdStat: 0, // 与aslist里面的rcdStat匹配确认停止的是否是同一个录音文件
       testpic1: require('@/icons/img/testpic1.jpg'),
-      exam: [
-        {
-          index: 0,
-          description: '题干题干题干题干题干题干题干题干题干干题干题干题干题干题干题干题干'
-        },
-        {
-          index: 1,
-          description: '1111题干题干题干题干题干题干题干题干题干题干题干题干题干题干题干'
-        }
-      ],
-      answerList: [{ answer: [], status: 1, rcdStat: 0 }, { answer: [], status: 0, rcdStat: 0 }]
+      exam: [],
+      answerList: [{ question_id: 0, answer: [], status: 0, rcdStat: 0 }]
     }
+  },
+  created() {
+    console.log('获取试题数据')
+    this.handleGetExam()
   },
   methods: {
     // 添加——修改状态，list++，然后录音
@@ -131,7 +127,7 @@ export default {
               // 修改状态
               this.answerList[index].status = 1
               // list添加
-              this.answerList.push({ answer: [], status: 0, rcdStat: 0 })
+              this.answerList.push({ question_id: this.currentIndex, answer: [], status: 0, rcdStat: 0 })
             }
             alert('关闭对话框后开始录制回答。回答结束后，再次点击蓝色按钮结束录制！')
             // 修改录音状态标志
@@ -163,7 +159,7 @@ export default {
     handleDelete(index) {
       this.answerList.splice(index, 1)
     },
-    // 上一题
+    // 下一题
     handleNext(index) {
       if (this.exam[index + 1]) {
         this.handleSend(this.answerList)
@@ -172,23 +168,30 @@ export default {
         alert('已是最后一题！')
       }
     },
-    // 下一题
-    handlePrior(index) {
-      console.log(this.currentIndex)
-      if (index === 0) {
-        alert('已是第一题！')
-      } else {
-        this.handleSend(this.answerList)
-        this.currentIndex--
-      }
-    },
-    // TODO--获取试题数据
-    getExam() {
-
+    // 上一题
+    // handlePrior(index) {
+    //   console.log(this.currentIndex)
+    //   if (index === 0) {
+    //     alert('已是第一题！')
+    //   } else {
+    //     this.handleSend(this.answerList)
+    //     this.currentIndex--
+    //   }
+    // },
+    // 获取试题数据
+    handleGetExam() {
+      const data = { type: 'getExam', exam_id: '2020082601' }
+      getExam(data).then((response) => {
+        console.log(response)
+        this.exam = response.data
+      })
     },
     // TODO--发送数据保存
     handleSend(answerList) {
-
+      const data = { type: 'saveAnswer', answerList: this.answerList }
+      saveAnswer(data).then((response) => {
+        console.log(response)
+      })
     }
   }
 }
