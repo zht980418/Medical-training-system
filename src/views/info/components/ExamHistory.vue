@@ -4,16 +4,16 @@
       <el-timeline-item
         v-for="(item,index) of historyList"
         :key="index"
-        :timestamp="item.timestamp"
+        :timestamp="item.time_stamp"
         placement="top"
       >
         <el-card>
           <ExamHistoryItem
             :icon="item.icon"
-            :title="item.title"
+            :title="item.exam_title"
             :office="item.office"
-            :starttime="item.starttime"
-            :endtime="item.endtime"
+            :start="item.start_time"
+            :end="item.end_time"
           />
         </el-card>
       </el-timeline-item>
@@ -23,12 +23,30 @@
 
 <script>
 import ExamHistoryItem from '../components/ExamHistoryItem'
+import { getExamHistory } from '@/api/exam'
 
 export default {
   components: { ExamHistoryItem },
   data() {
     return {
-      historyList: [{ title: '考试记录1', office: '科室1', timestamp: '2020-7-9' }, { title: '考试记录2', office: '科室2', timestamp: '2020-7-10' }]
+      historyList: [{ exam_title: '考试记录1', office: '科室1', start_time: '考试', time_stamp: '2020-7-9' }]
+    }
+  },
+  created() {
+    console.log(this.historyList)
+    console.log('获取考试记录数据')
+    this.handleGetHistory()
+  },
+  methods: {
+    // 获取考试记录数据
+    handleGetHistory() {
+      const data = { type: 'getExamHistory', user_id: '1' }
+      getExamHistory(data).then((response) => {
+        console.log(response)
+        this.historyList = response.data
+        console.log(response.data)
+        console.log(this.historyList)
+      })
     }
   }
 }

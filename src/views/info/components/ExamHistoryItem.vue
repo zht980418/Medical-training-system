@@ -8,7 +8,7 @@
         <p class="course-title">{{ title }}</p>
         <p class="office">{{ office }}</p>
       </div>
-      <p class="time">{{ StartTime }} - {{ EndTime }}</p>
+      <p class="time">{{ start }} - {{ end }}</p>
     </div>
   </div>
 </template>
@@ -30,31 +30,14 @@ export default {
       type: String,
       default: '科室名'
     },
-    startTime: {
+    start: {
       type: String,
       default: '起始时间'
     },
-    endTime: {
+    end: {
       type: String,
       default: '终止时间'
     }
-  },
-  data() {
-    return {
-      Title: '',
-      Icon: '',
-      Office: '',
-      Percentage: 0,
-      StartTime: '',
-      EndTime: ''
-    }
-  },
-  mounted() {
-    this.Icon = this.icon
-    this.Title = this.title
-    this.Office = this.office
-    this.StartTime = this.startTime
-    this.EndTime = this.endTime
   }
 }
 </script>

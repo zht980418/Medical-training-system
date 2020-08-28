@@ -162,7 +162,13 @@ export default {
     // 下一题
     handleNext(index) {
       if (this.exam[index + 1]) {
+        // 保存音频数据
         this.handleSend(this.answerList)
+        this.recorder.destroy()
+        // 清空answerList
+        this.answerList = []
+        this.answerList.push({ question_id: index + 1, answer: [], status: 0, rcdStat: 0 })
+        // 切换题目
         this.currentIndex++
       } else {
         alert('已是最后一题！')

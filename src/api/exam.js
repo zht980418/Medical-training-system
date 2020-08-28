@@ -18,3 +18,12 @@ export function saveAnswer(data) {
         data: Qs.stringify(data)
     })
 }
+
+export function getExamHistory(data) {
+    return request({
+        url: '/MedicalServer/myServer',
+        method: 'post',
+        param: Qs.stringify(data),
+        data: Qs.stringify(data)
+    })
+}
