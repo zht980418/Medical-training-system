@@ -9,13 +9,22 @@
         <!-- TODO完成头像修改 -->
       </el-form-item>
       <el-form-item label="旧密码">
-        <el-input v-model.trim="user.password" />
+        <el-input
+          v-model.trim="user.oldPassword"
+          show-password
+        />
       </el-form-item>
       <el-form-item label="新密码">
-        <el-input v-model.trim="user.password" />
+        <el-input
+          v-model.trim="user.newPassword"
+          show-password
+        />
       </el-form-item>
       <el-form-item label="重复新密码">
-        <el-input v-model.trim="user.password" />
+        <el-input
+          v-model.trim="user.newPassword2"
+          show-password
+        />
       </el-form-item>
       <el-form-item>
         <el-button

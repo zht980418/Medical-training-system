@@ -1,4 +1,6 @@
 import request from '@/utils/request'
+import request2 from '@/utils/request2'
+import Qs from 'qs'
 
 export function login(data) {
   return request({

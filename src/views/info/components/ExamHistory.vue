@@ -29,7 +29,7 @@ export default {
   components: { ExamHistoryItem },
   data() {
     return {
-      historyList: [{ }]
+      historyList: [{}]
     }
   },
   created() {
@@ -41,6 +41,7 @@ export default {
     handleGetExamHistory() {
       const data = { type: 'getExamHistory', user_id: '1' }
       getExamHistory(data).then((response) => {
+        console.log('考试记录：')
         console.log(response)
         this.historyList = response.data
       })

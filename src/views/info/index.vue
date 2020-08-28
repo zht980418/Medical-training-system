@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import UserCard from './components/UserCard'
 import CourseHistory from './components/CourseHistory'
 import ExamHistory from './components/ExamHistory'
@@ -53,15 +52,8 @@ export default {
   data() {
     return {
       user: {},
-      activeTab: 'CourseHistory'
+      activeTab: 'CourseHistory'// 默认tab
     }
-  },
-  computed: {
-    ...mapGetters([
-      'name',
-      'avatar',
-      'roles'
-    ])
   },
   created() {
     this.getUser()
@@ -69,9 +61,12 @@ export default {
   methods: {
     getUser() {
       this.user = {
+        id: 1,
         name: this.name,
-        role: this.roles.join(' | '),
+        sex: '女',
+        post: '护士',
         email: 'admin@test.com',
+        office: '一个科室啦',
         avatar: this.avatar
       }
     }

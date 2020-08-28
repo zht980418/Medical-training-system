@@ -43,6 +43,8 @@ export default {
     handleGetCourseHistory() {
       const data = { type: 'getCourseHistory', user_id: '1' }
       getCourseHistory(data).then((response) => {
+        console.log('课程记录')
+        console.log(response)
         this.historyList = response.data
       })
     }

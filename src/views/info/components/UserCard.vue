@@ -6,7 +6,6 @@
     >
       <span>个人信息</span>
     </div>
-
     <div class="user-profile">
       <div class="box-center">
         <pan-thumb
@@ -32,19 +31,34 @@
         </div>
         <el-form class="info-form">
           <el-form-item label="用户名">
-            <el-alert :closable="false">{{ user.id }}</el-alert>
+            <el-input
+              v-model="user.id"
+              :disabled="true"
+            />
           </el-form-item>
           <el-form-item label="姓名">
-            <el-alert :closable="false">{{ user.name }}</el-alert>
+            <el-input
+              v-model="user.name"
+              :disabled="true"
+            />
           </el-form-item>
           <el-form-item label="性别">
-            <el-alert :closable="false">{{ user.sex }}</el-alert>
+            <el-input
+              v-model="user.sex"
+              :disabled="true"
+            />
           </el-form-item>
           <el-form-item label="职称">
-            <el-alert :closable="false">{{ user.post }}</el-alert>
+            <el-input
+              v-model="user.post"
+              :disabled="true"
+            />
           </el-form-item>
           <el-form-item label="科室">
-            <el-alert :closable="false">{{ user.office }}</el-alert>
+            <el-input
+              v-model="user.office"
+              :disabled="true"
+            />
           </el-form-item>
         </el-form>
       </div>
@@ -69,7 +83,6 @@ export default {
           email: '',
           office: '',
           avatar: '',
-          role: ''
         }
       }
     }
@@ -116,7 +129,6 @@ export default {
         padding-left: 4px;
       }
     }
-
     .info-form {
       padding-left: 8px;
     }
