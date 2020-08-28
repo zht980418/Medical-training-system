@@ -29,23 +29,20 @@ export default {
   components: { ExamHistoryItem },
   data() {
     return {
-      historyList: [{ exam_title: '考试记录1', office: '科室1', start_time: '考试', time_stamp: '2020-7-9' }]
+      historyList: [{ }]
     }
   },
   created() {
-    console.log(this.historyList)
     console.log('获取考试记录数据')
-    this.handleGetHistory()
+    this.handleGetExamHistory()
   },
   methods: {
     // 获取考试记录数据
-    handleGetHistory() {
+    handleGetExamHistory() {
       const data = { type: 'getExamHistory', user_id: '1' }
       getExamHistory(data).then((response) => {
         console.log(response)
         this.historyList = response.data
-        console.log(response.data)
-        console.log(this.historyList)
       })
     }
   }

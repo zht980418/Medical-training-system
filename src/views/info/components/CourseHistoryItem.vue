@@ -9,15 +9,15 @@
         <p class="office">{{ office }}</p>
       </div>
       <div class="progress-container">
-        <p class="progress-text">已学习{{ Completed }}/{{ Sum }}</p>
+        <p class="progress-text">已学习{{ completed }}/{{ sum }}</p>
         <el-progress
           class="progress"
           label="已学习"
-          percentage="50"
+          :percentage="Percentage"
           show-text="false"
         />
       </div>
-      <p class="time">{{ StartTime }} - {{ EndTime }}</p>
+      <p class="time">{{ start }} - {{ end }}</p>
     </div>
   </div>
 </template>
@@ -47,37 +47,20 @@ export default {
       type: Number,
       default: 50
     },
-    startTime: {
+    start: {
       type: String,
       default: '起始时间'
     },
-    endTime: {
+    end: {
       type: String,
       default: '终止时间'
     }
   },
   data() {
     return {
-      Title: '',
-      Icon: '',
-      Office: '',
-      Sum: 0,
-      Completed: 0,
-      Percentage: 0,
-      StartTime: '',
-      EndTime: ''
+      // 计算百分比
+      Percentage: this.completed === 0 ? 0 : this.completed / this.sum * 100
     }
-  },
-  mounted() {
-    this.Icon = this.icon
-    this.Title = this.title
-    this.Office = this.office
-    this.StartTime = this.startTime
-    this.EndTime = this.endTime
-    this.Sum = this.sum
-    this.Completed = this.completed
-    // 当完成数量为0时，显示默认值0，否则进行百分比计算
-    if (this.Completed !== 0) { this.Percentage = 100 * this.Completed / this.Sum }
   }
 }
 </script>

@@ -2,7 +2,7 @@ import request from '@/utils/request2'
 import Qs from 'qs'
 
 
-export function register(data) {
+export function getCourseHistory(data) {
     return request({
         url: '/MedicalServer/myServer',
         method: 'post',
@@ -10,3 +10,4 @@ export function register(data) {
         data: Qs.stringify(data)
     })
 }
+

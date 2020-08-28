@@ -6,8 +6,8 @@
       :icon="item.icon"
       :title="item.title"
       :office="item.office"
-      :start-time="item.startTime"
-      :end-time="item.endTime"
+      :start="item.start"
+      :end="item.end"
       @click.native.prevent="handleExam"
     />
   </ul>
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      examlist: [{ title: '2323' }, { title: '14322' }],
+      examlist: [{ title: '2323', start: '2020', end: '2021' }, { title: '14322' }],
       loading: false
     }
   },

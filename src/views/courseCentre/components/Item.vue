@@ -2,18 +2,18 @@
   <li class="course-item">
     <img
       class="course-img"
-      :src="Icon"
+      :src="icon"
     >
     <div class="item-description">
-      <p class="item-title">{{ Title }}</p>
-      <p class="item-office">{{ Office }}</p>
-      <span class="item-progress-text">已学习{{ Completed }}/{{ Sum }}</span>
+      <p class="item-title">{{ title }}</p>
+      <p class="item-office">{{ office }}</p>
+      <span class="item-progress-text">已学习{{ completed }}/{{ sum }}</span>
       <el-progress
         class="item-progress"
         :percentage="Percentage"
         show-text="false"
       />
-      <p class="item-time">{{ StartTime }}-{{ EndTime }}</p>
+      <p class="item-time">{{ start }}-{{ end }}</p>
     </div>
   </li>
 </template>
@@ -43,37 +43,20 @@ export default {
       type: Number,
       default: 0
     },
-    startTime: {
+    start: {
       type: String,
       default: '2020/7/29'
     },
-    endTime: {
+    end: {
       type: String,
       default: '2020/9/9'
     }
   },
   data() {
     return {
-      Title: '',
-      Icon: '',
-      Office: '',
-      Sum: 0,
-      Completed: 0,
-      Percentage: 0,
-      StartTime: '',
-      EndTime: ''
+      // 计算百分比
+      Percentage: this.completed === 0 ? 0 : this.completed / this.sum * 100
     }
-  },
-  mounted() {
-    this.Icon = this.icon
-    this.Title = this.title
-    this.Office = this.office
-    this.StartTime = this.startTime
-    this.EndTime = this.endTime
-    this.Sum = this.sum
-    this.Completed = this.completed
-    // 当完成数量为0时，显示默认值0，否则进行百分比计算
-    if (this.Completed !== 0) { this.Percentage = 100 * this.Completed / this.Sum }
   }
 }
 </script>

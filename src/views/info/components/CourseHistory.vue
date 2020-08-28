@@ -4,19 +4,18 @@
       <el-timeline-item
         v-for="(item,index) of historyList"
         :key="index"
-        :timestamp="item.timestamp"
+        :timestamp="item.time_stamp"
         placement="top"
       >
         <el-card>
-
           <CourseHistoryItem
             :icon="item.icon"
             :title="item.title"
             :office="item.office"
             :sum="item.sum"
             :completed="item.completed"
-            :starttime="item.starttime"
-            :endtime="item.endtime"
+            :start="item.start"
+            :end="item.end"
           />
         </el-card>
       </el-timeline-item>
@@ -26,12 +25,26 @@
 
 <script>
 import CourseHistoryItem from '../components/CourseHistoryItem'
+import { getCourseHistory } from '@/api/course'
 
 export default {
   components: { CourseHistoryItem },
   data() {
     return {
-      historyList: [{ title: '课程记录1', office: '科室1', timestamp: '2020-7-9' }, { title: '课程记录2', office: '科室2', timestamp: '2020-7-10' }]
+      historyList: [{}]
+    }
+  },
+  created() {
+    console.log('获取课程学习记录')
+    this.handleGetCourseHistory()
+  },
+  methods: {
+    // 获取courseList
+    handleGetCourseHistory() {
+      const data = { type: 'getCourseHistory', user_id: '1' }
+      getCourseHistory(data).then((response) => {
+        this.historyList = response.data
+      })
     }
   }
 }

@@ -8,8 +8,8 @@
       :office="item.office"
       :sum="item.sum"
       :completed="item.completed"
-      :starttime="item.starttime"
-      :endtime="item.endtime"
+      :start="item.starttime"
+      :end="item.endtime"
       @click.native.prevent="handleCourse"
     />
   </ul>

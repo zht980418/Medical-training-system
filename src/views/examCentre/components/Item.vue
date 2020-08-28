@@ -3,12 +3,12 @@
   <li class="exam-item">
     <img
       class="exam-img"
-      :src="Icon"
+      :src="icon"
     >
     <div class="item-description">
-      <p class="item-title">{{ Title }}</p>
-      <p class="item-office">{{ Office }}</p>
-      <p class="item-time">{{ StartTime }}-{{ EndTime }}</p>
+      <p class="item-title">{{ title }}</p>
+      <p class="item-office">{{ office }}</p>
+      <p class="item-time">{{ start }}-{{ end }}</p>
     </div>
   </li>
 </template>
@@ -31,30 +31,14 @@ export default {
       type: String,
       default: '科室'
     },
-    startTime: {
+    start: {
       type: String,
       default: '2020/7/29'
     },
-    endTime: {
+    end: {
       type: String,
       default: '2020/9/9'
     }
-  },
-  data() {
-    return {
-      Title: '',
-      Icon: '',
-      Office: '',
-      StartTime: '',
-      EndTime: ''
-    }
-  },
-  mounted() {
-    this.Icon = this.icon
-    this.Title = this.title
-    this.Office = this.office
-    this.StartTime = this.startTime
-    this.EndTime = this.endTime
   }
 }
 </script>
