@@ -91,6 +91,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { login } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -151,15 +152,14 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store
-            .dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/' })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+          const data = { type: 'login', login_id: this.loginForm.username, password: this.loginForm.password }
+          console.log(data)
+          // 登录，获取user_id
+          login(data).then((response) => {
+            console.log(response)
+            const user_id = response.data
+            this.$router.push({ name: 'CourseList', params: { user_id: user_id }})
+          })
         } else {
           console.log('error submit!!')
           return false

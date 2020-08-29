@@ -10,7 +10,7 @@
       <span class="user-name">admin</span>
       <img
         class="user-avatar"
-        :src="avatar+'?imageView2/1/w/80/h/80'"
+        :src="head"
       >
       <el-button
         class="exit"
@@ -33,6 +33,11 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    return {
+      head: require('@/icons/img/head1.jpg')
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -44,7 +49,6 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

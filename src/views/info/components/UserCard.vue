@@ -23,7 +23,6 @@
         <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
       </div>
     </div>
-
     <div class="user-info">
       <div class="user-info user-info-section">
         <div class="user-info-header">
@@ -82,7 +81,7 @@ export default {
           post: '',
           email: '',
           office: '',
-          avatar: '',
+          avatar: ''
         }
       }
     }

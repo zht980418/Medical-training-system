@@ -1,20 +1,21 @@
-import request from '@/utils/request'
-import request2 from '@/utils/request2'
+import request from '@/utils/request2'
 import Qs from 'qs'
 
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/MedicalServer/myServer',
     method: 'post',
-    data
+    param: Qs.stringify(data),
+    data: Qs.stringify(data)
   })
 }
 
-export function getInfo(token) {
+export function getInfo(data) {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    url: '/MedicalServer/myServer',
+    method: 'post',
+    param: Qs.stringify(data),
+    data: Qs.stringify(data)
   })
 }
 

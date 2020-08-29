@@ -36,7 +36,8 @@ export default {
         { label: '正在进行', key: 'Now' },
         { label: '即将开始', key: 'Wait' },
         { label: '已结束', key: 'Fin' }
-      ]
+      ],
+      user_id: ''
     }
   },
   watch: {
@@ -50,6 +51,7 @@ export default {
     if (tab) {
       this.activeName = tab
     }
+    this.user_id = this.$route.params.user_id
   }
 }
 </script>
