@@ -3,12 +3,13 @@
     <ExamItem
       v-for="item in examlist"
       :key="item.key"
+      :examid="exam_id"
       :icon="item.icon"
       :title="item.title"
       :office="item.office"
       :start="item.start"
       :end="item.end"
-      @click.native.prevent="handleExam"
+      @click.native.prevent="handleExam(item.exam_id,item.title)"
     />
   </ul>
 </template>
@@ -21,24 +22,15 @@ export default {
   functional: false,
   components: { ExamItem },
   props: {
-    type: {
-      type: String,
-      default: 'Wait'
-    }
-  },
-  data() {
-    return {
-      examlist: [{ title: '2323', start: '2020', end: '2021' }, { title: '14322' }],
-      loading: false
+    examlist: {
+      type: Object,
+      default: () => []
     }
   },
   methods: {
-    getList() {
-      // TODO--获取examlist数据
-    },
-    handleExam() {
+    handleExam(exam_id, title) {
       console.log('点击考试')
-      this.$router.push({ name: 'ExamPage' })// TODO--传入参数
+      this.$router.push({ name: 'ExamPage', params: { exam_id: exam_id, title: title }})// 传入exam_id参数
     }
   }
 }

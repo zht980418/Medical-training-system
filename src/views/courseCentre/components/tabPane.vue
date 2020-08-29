@@ -3,6 +3,7 @@
     <CourseItem
       v-for="item in courselist"
       :key="item.key"
+      :courseid="item.course_id"
       :icon="item.icon"
       :title="item.title"
       :office="item.office"
@@ -10,7 +11,7 @@
       :completed="item.completed"
       :start="item.starttime"
       :end="item.endtime"
-      @click.native.prevent="handleCourse"
+      @click.native.prevent="handleCourse(item.course_id)"
     />
   </ul>
 </template>
@@ -23,24 +24,15 @@ export default {
   functional: false,
   components: { CourseItem },
   props: {
-    type: {
-      type: String,
-      default: 'Wait'
-    }
-  },
-  data() {
-    return {
-      courselist: [{ title: '2323', sum: '10', completed: '2' }, { title: '14322' }],
-      loading: false
+    courselist: {
+      type: Object,
+      default: () => []
     }
   },
   methods: {
-    getList() {
-      // TODO--获取courselist数据
-    },
-    handleCourse() {
+    handleCourse(course_id) {
       console.log('点击课程')
-      this.$router.push({ name: 'CoursePage' })// TODO--传入参数
+      this.$router.push({ name: 'CoursePage', params: { course_id: course_id }})// 传入course_id
     }
   }
 }

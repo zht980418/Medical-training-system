@@ -2,7 +2,7 @@
 <template>
   <div class="class-centre-container">
     <h1 class="class-centre-title">{{ title }}</h1>
-    <slide-show></slide-show>
+    <slide-show />
   </div>
 </template>
 
@@ -15,6 +15,14 @@ import 'video.js/dist/video-js.css'
 export default {
   name: 'CoursePage',
   components: { slideShow },
+  data() {
+    return {
+      course_id: ''
+    }
+  },
+  created() {
+    this.course_id = this.$route.params
+  }
 }
 </script>
 <style lang='scss' scoped>

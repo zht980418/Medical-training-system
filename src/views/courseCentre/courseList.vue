@@ -6,24 +6,34 @@
       style="margin-top:15px;margin-left:60px;margin-right:60px"
     >
       <el-tab-pane
-        v-for="item in tabMapOptions"
-        :key="item.key"
-        :label="item.label"
-        :name="item.key"
+        label="全部"
+        name="All"
       >
-        <keep-alive>
-          <CourseTabPane
-            v-if="activeName==item.key"
-            :type="item.key"
-          />
-        </keep-alive>
+        <CourseTabPane :courselist="all" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="正在进行"
+        name="Now"
+      >
+        <CourseTabPane :courselist="now" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="即将开始"
+        name="Wait"
+      >
+        <CourseTabPane :courselist="wait" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="已结束"
+        name="Fin"
+      >
+        <CourseTabPane :courselist="fin" />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import CourseTabPane from '../courseCentre/components/tabPane'
 
 export default {
@@ -31,27 +41,26 @@ export default {
   components: { CourseTabPane },
   data() {
     return {
-      tabMapOptions: [
-        { label: '全部', key: 'All' },
-        { label: '正在进行', key: 'Now' },
-        { label: '即将开始', key: 'Wait' },
-        { label: '已结束', key: 'Fin' }
-      ],
-      user_id: ''
-    }
-  },
-  watch: {
-    activeName(val) {
-      this.$router.push(`${this.$route.path}?tab=${val}`)
+      user_id: '',
+      now: [{ course_id: '2020082601', title: '课程1', sum: '10', completed: '2' }, { title: '14322' }],
+      wait: [{ course_id: '2020082801', title: '课程2', sum: '10', completed: '6' }, { title: '14322' }],
+      fin: [{ course_id: '2020082602', title: '课程3', sum: '10', completed: '3' }, { title: '14322' }],
+      all: [{ course_id: '2020082602', title: '14322' }]
     }
   },
   created() {
     // init the default selected tab
-    const tab = 'All'
+    const tab = 'Now'
     if (tab) {
       this.activeName = tab
     }
     this.user_id = this.$route.params.user_id
+  },
+  methods: {
+    // TODO--获取Courselist
+    handleGetCourseList() {
+
+    }
   }
 }
 </script>

@@ -23,6 +23,10 @@ export default {
   name: 'CourseItem',
   functional: false,
   props: {
+    courseid: {
+      type: String,
+      default: '2020080101'
+    },
     icon: {
       type: String,
       default: require('@/icons/img/test1.png')

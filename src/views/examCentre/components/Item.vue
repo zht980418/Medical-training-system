@@ -19,6 +19,10 @@ export default {
   name: 'ExamItem',
   functional: false,
   props: {
+    examid: {
+      type: String,
+      default: '2020080101'
+    },
     icon: {
       type: String,
       default: require('@/icons/img/test2.jpg')

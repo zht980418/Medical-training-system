@@ -6,49 +6,74 @@
       style="margin-top:15px;margin-left:60px;margin-right:60px"
     >
       <el-tab-pane
-        v-for="item in tabMapOptions"
-        :key="item.key"
-        :label="item.label"
-        :name="item.key"
+        label="全部"
+        name="All"
       >
-        <keep-alive>
-          <ExamTabPane
-            v-if="activeName==item.key"
-            :type="item.key"
-          />
-        </keep-alive>
+        <ExamTabPane :examlist="all" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="正在进行"
+        name="Now"
+      >
+        <ExamTabPane :examlist="now" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="即将开始"
+        name="Wait"
+      >
+        <ExamTabPane :examlist="wait" />
+      </el-tab-pane>
+      <el-tab-pane
+        label="已结束"
+        name="Fin"
+      >
+        <ExamTabPane :examlist="fin" />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import ExamTabPane from '../examCentre/components/tabPane'
+import { getExamList } from '@/api/exam'
+// import { getter } from '@/store/getters'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ExamCentre',
   components: { ExamTabPane },
   data() {
     return {
-      tabMapOptions: [
-        { label: '全部', key: 'All' },
-        { label: '正在进行', key: 'Now' },
-        { label: '即将开始', key: 'Wait' },
-        { label: '已结束', key: 'Fin' }
-      ]
+      now: [{ exam_id: '2020082601', title: '考试1' }, { title: '14322' }],
+      wait: [{ exam_id: '2020082801', title: '考试2' }, { title: '14322' }],
+      fin: [{ exam_id: '2020082802', title: '考试3' }, { title: '14322' }],
+      all: [{ exam_id: '2020082802', title: '考试4' }]
     }
   },
-  watch: {
-    activeName(val) {
-      this.$router.push(`${this.$route.path}?tab=${val}`)
-    }
+  computed: {
+    ...mapGetters([
+      'user_id',
+      'name'
+    ])
   },
   created() {
     // init the default selected tab
-    const tab = 'All'
+    const tab = 'Now'
     if (tab) {
       this.activeName = tab
+    }
+    // console.log('user_id' + this.user_id)
+    console.log('name' + this.name)
+    // get examlist
+    this.handleGetList('Now')
+    this.handleGetList('Wait')
+    this.handleGetList('Fin')
+  },
+  methods: {
+    // TODO--获取list
+    handleGetList(type) {
+      const data = { type: type }
+      getExamList(data)
     }
   }
 }

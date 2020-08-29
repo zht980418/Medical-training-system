@@ -97,6 +97,7 @@ export default {
   data() {
     return {
       title: 'ExamPage',
+      exam_id: '',
       recorder: new Recorder(),
       player: new window.Audio(),
       currentIndex: 0, // 题号
@@ -108,11 +109,13 @@ export default {
     }
   },
   created() {
-    console.log('获取试题数据')
-    this.handleGetExam()
+    this.exam_id = this.$route.params.exam_id
+    this.title = this.$route.params.title
+    console.log('获取试题' + this.exam_id + '数据')
+    this.handleGetExam(this.exam_id)
   },
   methods: {
-    // 添加——修改状态，list++，然后录音
+    // 添加--修改状态，list++，然后录音
     // 修改--直接重新录音
     handleRecord(index) {
       Recorder.getPermission().then(() => {
@@ -151,11 +154,13 @@ export default {
         console.log(`${error.name} : ${error.message}`)
       })
     },
+    // 播放录音
     handleListen(index) {
       console.log('试听音频')
       this.player.src = window.URL.createObjectURL(this.answerList[index].answer)
       this.player.play()
     },
+    // 删除录音
     handleDelete(index) {
       this.answerList.splice(index, 1)
     },
@@ -185,8 +190,8 @@ export default {
     //   }
     // },
     // 获取试题数据
-    handleGetExam() {
-      const data = { type: 'getExam', exam_id: '2020082601' }
+    handleGetExam(exam_id) {
+      const data = { type: 'getExam', exam_id: exam_id }
       getExam(data).then((response) => {
         console.log(response)
         this.exam = response.data
