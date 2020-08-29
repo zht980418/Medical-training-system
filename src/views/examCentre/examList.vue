@@ -63,7 +63,7 @@ export default {
       this.activeName = tab
     }
     // console.log('user_id' + this.user_id)
-    console.log('name' + this.name)
+    // console.log('name' + this.name)
     // get examlist
     this.handleGetList('Now')
     this.handleGetList('Wait')

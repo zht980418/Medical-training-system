@@ -2,22 +2,36 @@
 <template>
   <div class="class-centre-container">
     <h1 class="class-centre-title">{{ title }}</h1>
-    <slide-show />
+    <el-card class="class-centre-card">
+      <el-carousel height="150px">
+        <el-carousel-item
+          v-for="item in courseList"
+          :key="item.pic"
+        >
+          <img
+            :src="item"
+            class="image"
+          >
+        </el-carousel-item>
+      </el-carousel>
+    </el-card>
+
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import slideShow from '../courseCentre/components/SlideShow'
 import 'video.js/dist/video-js.css'
 
 export default {
   name: 'CoursePage',
-  components: { slideShow },
+  components: {},
   data() {
     return {
-      course_id: ''
+      title: 'CoursePage',
+      course_id: '',
+      courseList: [require('@/icons/img/testpic1.jpg'), require('@/icons/img/testpic2.jpg'), require('@/icons/img/testpic3.jpg')]
     }
   },
   created() {
@@ -36,8 +50,22 @@ export default {
       border-bottom: solid 2px #409eff;
       margin: 30px;
     }
-    .video-player {
-      width: 70%;
+    .class-centre-card {
+      margin: 30px;
+      min-height: 600px;
+      .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 450px;
+        margin: 0;
+      }
+      .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+      }
+      .el-carousel__item:nth-child(2n + 1) {
+        background-color: #d3dce6;
+      }
     }
   }
 }

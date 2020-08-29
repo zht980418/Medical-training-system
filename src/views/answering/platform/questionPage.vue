@@ -1,6 +1,9 @@
 <template>
   <div class="class-centre-container">
     <h1 class="class-centre-title">{{ title }}</h1>
+    <el-card>
+      <p>正文</p>
+    </el-card>
   </div>
 </template>
 

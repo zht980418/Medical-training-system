@@ -62,11 +62,7 @@ export default {
     }
   },
   methods: {
-    // TODO--获取信息
-    getInfo() {
-
-    },
-    //TODO--提交修改
+    // TODO--提交修改
     submit() {
 
     }

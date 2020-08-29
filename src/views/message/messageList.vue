@@ -17,13 +17,13 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="发布者"
+          label="发布科室"
           width="195"
           align="center"
-          prop="author"
+          prop="office"
         >
           <template slot-scope="scope">
-            {{ scope.row.author }}
+            {{ scope.row.office }}
           </template>
         </el-table-column>
         <el-table-column
@@ -51,12 +51,12 @@ export default {
   data() {
     return {
       title: '通知中心',
-      list: [{ title: '12313', author: 'wewqewq', time: '2332r' }, { title: '123dwrewr3', author: 'weerqqewqedfvfhdewq', time: '213432332r' }]
+      list: [{ message_id: '1111', title: '12313', office: 'wewqewq', time: '2332r' }, { title: '123dwrewr3', office: 'weerqqewqedfvfhdewq', time: '213432332r' }]
     }
   },
   methods: {
-    openMessage() {
-      this.$router.push('MessagePage')
+    openMessage(row, event, column) {
+      this.$router.push({ name: 'MessagePage', params: { message_id: row.message_id }})
     }
   }
 }
